@@ -6,8 +6,8 @@ export const main = handler (async () => {
         TableName: process.env.TABLE_NAME,
         KeyConditionExpression: "userId = :userId",
         ExpressionAttributeValues: {
-            ":userId": "123",
-        },
+            ":userId": "123"
+        }
     };
 
     const result = await dynamoDb.query(params);

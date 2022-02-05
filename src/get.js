@@ -6,8 +6,8 @@ export const main = handler(async (event) => {
         TableName: process.env.TABLE_NAME,
         Key: {
             userId: "123",
-            noteId: event.pathParameters.id,
-        },
+            noteId: event.pathParameters.id
+        }
     };
 
     const result = await dynamoDb.get(params);
