@@ -20,7 +20,7 @@ export default class StorageStack extends sst.Stack {
         this.table = new sst.Table(this, "Notes", {
             // these are the rows of the table Notes
             fields: {
-                userID: sst.TableFieldType.STRING,
+                userId: sst.TableFieldType.STRING,
                 noteId: sst.TableFieldType.STRING,
             },
             // here we assign the primary keys in DynamoDB, note these are always unique
