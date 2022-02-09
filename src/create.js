@@ -12,7 +12,10 @@ export const main = handler(async (event) => {
     const params = {
         TableName: process.env.TABLE_NAME,
         Item: {
-            userId: "123",
+            // Previously used a constant Id to test functionality of API
+            // Now using the identity ID created with Cognito
+            // userId: "123",
+            userId: event.requestContext.authorizer.iam.cognitoIdentity.identityId,
             noteId: uuid.v1(),
             content: data.content,
             attachment: data.attachment,
