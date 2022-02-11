@@ -1,0 +1,47 @@
+/* body {
+	margin: 0;
+	padding: 0;
+	color: #333;
+	font-size: 16px;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+		"Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+		"Open Sans", sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+} */
+
+body {
+	margin: 0;
+	padding: 0;
+	color: #333;
+	font-size: 16px;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	font-family: "Open Sans", sans-serif;
+}
+
+/* code {
+	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+		monospace;
+} */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: "PT Serif", serif;
+}
+
+/* Below are styles that are there to format any form fields that pop up in the frontend, this is how the input from the user will be formatted
+Note that 1rem is equal to 16px
+The input file width being 100% prevents it from overflowing and adding a scrollbar*/
+select.form-control,
+textarea.form-control,
+input.form-control {
+	font-size: 1rem;
+}
+input[type="file"] {
+	width: 100%;
+}
