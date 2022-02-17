@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import Home from "./containers/Home";
+import Login from "./containers/Login";
 import NotFound from "./containers/NotFound";
 
 // this allows the container to respond to our routes
@@ -12,6 +13,9 @@ export default function Routes() {
 		<Switch>
 			<Route exact path="/">
 				<Home />
+			</Route>
+			<Route exact path="/login">
+				<Login />
 			</Route>
 			{/*
             This will be used to catch any unmatched routes
