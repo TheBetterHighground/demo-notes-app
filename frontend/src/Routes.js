@@ -2,7 +2,9 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import Home from "./containers/Home";
 import Login from "./containers/Login";
+import NewNote from "./containers/NewNote";
 import NotFound from "./containers/NotFound";
+import Signup from "./containers/Signup";
 
 // this allows the container to respond to our routes
 // the component below uses the Switch component from React-Router that renders the first matching route that is defined within it.
@@ -16,6 +18,12 @@ export default function Routes() {
 			</Route>
 			<Route exact path="/login">
 				<Login />
+			</Route>
+			<Route exact path="/signup">
+				<Signup />
+			</Route>
+			<Route exact path="/notes/new">
+				<NewNote />
 			</Route>
 			{/*
             This will be used to catch any unmatched routes
