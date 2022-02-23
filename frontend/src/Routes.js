@@ -5,6 +5,7 @@ import Login from "./containers/Login";
 import NewNote from "./containers/NewNote";
 import NotFound from "./containers/NotFound";
 import Signup from "./containers/Signup";
+import Notes from "./containers/Notes";
 
 // this allows the container to respond to our routes
 // the component below uses the Switch component from React-Router that renders the first matching route that is defined within it.
@@ -24,6 +25,9 @@ export default function Routes() {
 			</Route>
 			<Route exact path="/notes/new">
 				<NewNote />
+			</Route>
+			<Route exact path="/notes/:id">
+				<Notes />
 			</Route>
 			{/*
             This will be used to catch any unmatched routes
