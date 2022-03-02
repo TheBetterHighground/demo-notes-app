@@ -2,22 +2,16 @@ import handler from "./util/handler";
 import dynamoDb from "./util/dynamodb";
 
 export const main = handler(async (event) => {
-    
-    const params = {
-        TableName: process.env.TABLE_NAME,
-        Key: {
-            // Replacing userId with Cognito created Identity ID
-            // userId: "123",
-            userId: event.requestContext.authorizer.iam.cognitoIdentity.identiyId,
-            noteId: event.pathParameters.id
-        }
-    };
-    // const params = {};
-    // var hashKey = { userId: "123", nodeId: event.pathParameters.id.toString() };
+	const params = {
+		TableName: process.env.TABLE_NAME,
+		// 'Key' defines the partition key and sort key of the item to be removed
+		Key: {
+			userId: event.requestContext.authorizer.iam.cognitoIdentity.identityId,
+			noteId: event.pathParameters.id, // The id of the note from the path
+		},
+	};
 
-    // params.TableName = process.env.TABLE_NAME;
-    // params.Key = hashKey;
-    await dynamoDb.delete(params);
+	await dynamoDb.delete(params);
 
-    return { status: true };
+	return { status: true };
 });

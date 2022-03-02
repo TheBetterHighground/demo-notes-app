@@ -2,9 +2,10 @@ import React, { useRef, useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { API, Storage } from "aws-amplify";
 import { onError } from "../lib/errorLib";
-import config from "../config";
-import LoaderButton from "../components/LoaderButton";
+import { s3Upload } from "../lib/awsLib";
 import Form from "react-bootstrap/Form";
+import LoaderButton from "../components/LoaderButton";
+import config from "../config";
 import "./Notes.css";
 
 export default function Notes() {
@@ -40,6 +41,12 @@ export default function Notes() {
 		onLoad();
 	}, [id]);
 
+	function saveNote(note) {
+		return API.put("notes", `/notes/${id}`, {
+			body: note,
+		});
+	}
+
 	function validateForm() {
 		return content.length > 0;
 	}
@@ -67,6 +74,27 @@ export default function Notes() {
 		}
 
 		setIsLoading(true);
+
+		try {
+			// await Storage.vault.remove(event.target.files);
+
+			if (file.current) {
+				attachment = await s3Upload(file.current);
+			}
+
+			await saveNote({
+				content,
+				attachment: attachment || note.attachment,
+			});
+			history.push("/");
+		} catch (e) {
+			onError(e);
+			setIsLoading(false);
+		}
+	}
+
+	function deleteNote() {
+		return API.del("notes", `/notes/${id}`);
 	}
 
 	async function handleDelete(event) {
@@ -81,6 +109,15 @@ export default function Notes() {
 		}
 
 		setIsDeleting(true);
+
+		try {
+			await deleteNote();
+			await Storage.vault.remove(event.target.files);
+			history.push("/");
+		} catch (e) {
+			onError(e);
+			setIsDeleting(false);
+		}
 	}
 
 	return (

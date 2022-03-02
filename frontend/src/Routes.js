@@ -6,6 +6,9 @@ import NewNote from "./containers/NewNote";
 import NotFound from "./containers/NotFound";
 import Signup from "./containers/Signup";
 import Notes from "./containers/Notes";
+import Settings from "./containers/Settings";
+import AuthenticatedRoute from "./components/AuthenticatedRoute";
+import UnauthenticatedRoute from "./components/UnauthenticatedRoute";
 
 // this allows the container to respond to our routes
 // the component below uses the Switch component from React-Router that renders the first matching route that is defined within it.
@@ -17,18 +20,21 @@ export default function Routes() {
 			<Route exact path="/">
 				<Home />
 			</Route>
-			<Route exact path="/login">
+			<UnauthenticatedRoute exact path="/login">
 				<Login />
-			</Route>
-			<Route exact path="/signup">
+			</UnauthenticatedRoute>
+			<UnauthenticatedRoute exact path="/signup">
 				<Signup />
-			</Route>
-			<Route exact path="/notes/new">
+			</UnauthenticatedRoute>
+			<AuthenticatedRoute exact path="/settings">
+				<Settings />
+			</AuthenticatedRoute>
+			<AuthenticatedRoute exact path="/notes/new">
 				<NewNote />
-			</Route>
-			<Route exact path="/notes/:id">
+			</AuthenticatedRoute>
+			<AuthenticatedRoute exact path="/notes/:id">
 				<Notes />
-			</Route>
+			</AuthenticatedRoute>
 			{/*
             This will be used to catch any unmatched routes
             MAKE SURE THAT THIS IS THE LAST ROUTE IN THE SWITCH BLOCK. ALWAYS!

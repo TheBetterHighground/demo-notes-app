@@ -11,3 +11,4 @@ export async function s3Upload(file) {
 }
 
 // not the best way to create a unique file name but for now it works. probably be better with a hashing algorithm.
+// Remember to delete duplicates or older file attachments.

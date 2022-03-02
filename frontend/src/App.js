@@ -50,12 +50,11 @@ function App() {
 	}
 
 	return (
-		// here I'm creating a fixed width container using Bootstrap, adding a navbar inside that container that fits to it's width, and adding some spacing with mb/py
 		!isAuthenticating && (
 			<div className="App container py-3">
 				<Navbar collapseOnSelect bg="light" expand="md" className="mb-3">
 					<LinkContainer to="/">
-						<Navbar.Brand href="/" className="font-weight-bold text-muted">
+						<Navbar.Brand className="font-weight-bold text-muted">
 							Scratch
 						</Navbar.Brand>
 					</LinkContainer>
@@ -63,14 +62,19 @@ function App() {
 					<Navbar.Collapse className="justify-content-end">
 						<Nav activeKey={window.location.pathname}>
 							{isAuthenticated ? (
-								<Nav.Link onClick={handleLogout}>Logout</Nav.Link>
+								<>
+									<LinkContainer to="/settings">
+										<Nav.Link>Settings</Nav.Link>
+									</LinkContainer>
+									<Nav.Link onClick={handleLogout}>Logout</Nav.Link>
+								</>
 							) : (
 								<>
 									<LinkContainer to="/signup">
-										<Nav.Link href="/signup">Sign Up</Nav.Link>
+										<Nav.Link>Signup</Nav.Link>
 									</LinkContainer>
 									<LinkContainer to="/login">
-										<Nav.Link href="/login">Login</Nav.Link>
+										<Nav.Link>Login</Nav.Link>
 									</LinkContainer>
 								</>
 							)}

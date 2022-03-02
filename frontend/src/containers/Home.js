@@ -1,5 +1,3 @@
-// This is the main container that I'll be using for this front end.
-// The containers are the top level components that will respond to the routes and make requests to the API.
 import React, { useState, useEffect } from "react";
 import ListGroup from "react-bootstrap/ListGroup";
 import { useAppContext } from "../lib/contextLib";
@@ -9,7 +7,6 @@ import { BsPencilSquare } from "react-icons/bs";
 import { LinkContainer } from "react-router-bootstrap";
 import "./Home.css";
 
-// render the homepage default when a user is not logged in
 export default function Home() {
 	const [notes, setNotes] = useState([]);
 	const { isAuthenticated } = useAppContext();
