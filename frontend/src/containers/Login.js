@@ -4,13 +4,11 @@ import Form from "react-bootstrap/Form";
 import { Auth } from "aws-amplify";
 import { useAppContext } from "../lib/contextLib";
 import "./Login.css";
-import { useHistory } from "react-router-dom";
 import LoaderButton from "../components/LoaderButton";
 import { onError } from "../lib/errorLib";
 import { useFormFields } from "../lib/hooksLib";
 
 export default function Login() {
-	const history = useHistory();
 	// Use the Hook useAppContext
 	const { userHasAuthenticated } = useAppContext();
 	// const [email, setEmail] = useState("");
@@ -34,7 +32,6 @@ export default function Login() {
 		try {
 			await Auth.signIn(fields.email, fields.password);
 			userHasAuthenticated(true);
-			history.push("/");
 		} catch (e) {
 			onError(e);
 			setIsLoading(false);
